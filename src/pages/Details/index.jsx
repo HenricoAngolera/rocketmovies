@@ -1,9 +1,12 @@
 import { Container } from './styles';
 
-export default function App(){
+import { Button } from '../../components/Button';
+
+export function Details(){
   return(
     <Container>
-      <h1>Page Details</h1>
+      <h1>Henrico Angolera</h1>
+      <Button />
     </Container>
   );
 }
