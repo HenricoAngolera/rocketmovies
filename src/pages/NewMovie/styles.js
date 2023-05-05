@@ -10,3 +10,14 @@ export const Container = styled.div`
     "header"
     "content";
 `;
+
+export const Content = styled.div`
+  grid-area: content;
+
+  .flex{
+    display: flex;
+    gap: 40px;
+
+    margin: 40px 0;
+  }
+`
