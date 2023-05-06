@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   grid-area: content;
+  overflow-y: auto;
 
   .flex{
     display: flex;
@@ -20,4 +21,25 @@ export const Content = styled.div`
 
     margin: 40px 0;
   }
-`
+`;
+
+export const Marks = styled.div`
+  > p {
+    margin: 40px 0 24px;
+
+    font-size: 20px;
+    color: ${({ theme }) => theme.COLORS.TEXT_GRAY};
+  }
+`;
+
+export const Tags = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+
+  padding: 16px;
+
+  background-color: ${({ theme }) => theme.COLORS.BLACK};
+  border-radius: 8px;
+`;

@@ -15,4 +15,9 @@ export const Container = styled.button`
   &:disabled {
     opacity: 0.5;
   }
+
+  &.black-button {
+    background-color: ${({theme}) => theme.COLORS.BLACK};
+    color: ${({theme}) => theme.COLORS.PINK}; 
+  }
 `;

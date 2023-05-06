@@ -10,7 +10,6 @@ export const Container = styled.textarea`
   border: none;
   resize: none; /* não aumentar textarea */
   
-  margin-bottom: 8px;
   border-radius: 10px;
   padding: 16px;
 
