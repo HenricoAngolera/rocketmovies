@@ -4,6 +4,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
+  width: max-content;
+
   background-color: ${({ theme, isNew }) => isNew ? "trasparent" : theme.COLORS.BACKGROUND_900};
   color: ${({ theme }) => theme.COLORS.GRAY_300};
 
@@ -23,7 +25,7 @@ export const Container = styled.div`
 
   > input {
     height: 56px;
-    width: 100%;
+    width: max-content;
 
     padding: 12px;
 

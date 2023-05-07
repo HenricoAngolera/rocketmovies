@@ -21,7 +21,7 @@ export const Logo = styled.h2`
   align-items: center;
 
   font-size: 24px;
-  color: ${({ theme }) => theme.COLORS.PINK}
+  color: ${({ theme }) => theme.COLORS.PINK};
 `;
 
 export const Search = styled.div`

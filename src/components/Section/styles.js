@@ -4,6 +4,8 @@ export const Container = styled.section`
   margin: 50px auto 24px; 
   width: 1137px;
 
+  padding-right: 24px;
+
   > h1 {
     margin-top: 24px;
     color: ${({ theme }) => theme.COLORS.WHITE};

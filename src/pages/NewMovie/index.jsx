@@ -6,7 +6,7 @@ import { Header } from '../../components/Header';
 import { Section } from '../../components/Section';
 import { Input } from '../../components/Input';
 import { TextArea } from '../../components/TextArea';
-import { MovieItem } from '../../components/MovieItem';
+import { MovieMark } from '../../components/MovieMark';
 
 export function NewMovie(){
   return(
@@ -22,8 +22,8 @@ export function NewMovie(){
           <Marks>
             <p>Marcadores</p>
             <Tags>
-              <MovieItem value="Aventura" />
-              <MovieItem isNew placeholder="Novo Item" />
+              <MovieMark value="Aventura" />
+              <MovieMark isNew placeholder="Novo Item" />
             </Tags>
           </Marks>
           <div className="flex">
