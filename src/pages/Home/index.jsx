@@ -12,13 +12,14 @@ export function Home() {
       <Header />
         <TitlePage>
           <h1>Meus filmes</h1>
-          <ButtonBox>
+          <ButtonBox to="/new_movie">
             <Button title="Adicionar Filme" icon={AiOutlinePlus}/>
           </ButtonBox>
         </TitlePage>
       <Content>
         <Notes>
           <MovieNote 
+            to="/details/32"
             data= {{
               title: "Guardiões da Galaxia",
               grade: 4,

@@ -1,4 +1,4 @@
-import { Container, Logo, Search, Profile } from './styles';
+import { Container, Logo, Search, Profile, ToProfile } from './styles';
 
 import { Input } from '../../components/Input';
 
@@ -16,14 +16,18 @@ export function Header() {
 
       <Profile>
         <div>
-          <strong>Henrico Angolera</strong>
+          <ToProfile to="/profile">
+            <strong>Henrico Angolera</strong>
+          </ToProfile>
           <a href="#">sair</a>
         </div>
 
-        <img 
-          src = "https://github.com/HenricoAngolera.png"
-          alt = "Foto do usuário" 
-        />
+        <ToProfile to="/profile">
+          <img 
+            src = "https://github.com/HenricoAngolera.png"
+            alt = "Foto do usuário" 
+          />
+        </ToProfile>
 
       </Profile>
     </Container>

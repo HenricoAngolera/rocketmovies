@@ -8,7 +8,7 @@ import { Rating } from "../Rating";
 export function Section({ title, stars: Stars, children }) {
   return (
     <Container>
-      <ButtonText title="Voltar" icon={BsArrowLeftShort}/>
+      <ButtonText to="/" title="Voltar" icon={BsArrowLeftShort}/>
       <Flex>
         <h1>{title}</h1>
         {Stars && <Rating grade={Stars} isBigSize/>}

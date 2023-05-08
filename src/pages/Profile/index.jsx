@@ -12,7 +12,7 @@ export function Profile() {
     <Container>
       <header>
         <a href="/">
-          <ButtonText title="Voltar" icon={BsArrowLeftShort}/>
+          <ButtonText to="/" title="Voltar" icon={BsArrowLeftShort}/>
         </a>
       </header>
       <Form>

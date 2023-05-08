@@ -33,7 +33,7 @@ export function SignUp(){
         </SpaceInput>
         <Button title="Entrar" />
         <ButtonBox>
-          <ButtonText title="Voltar para o login" icon={BsArrowLeftShort}/>
+          <ButtonText to="/" title="Voltar para o login" icon={BsArrowLeftShort}/>
         </ButtonBox>
       </Form>
       <Background />
