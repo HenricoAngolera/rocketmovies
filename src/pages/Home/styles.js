@@ -31,7 +31,7 @@ export const Content = styled.div`
 
   padding-right: 24px;
 
-  overflow: auto;
+  overflow-y: auto;
 
   ::-webkit-scrollbar {
     width: 8px;

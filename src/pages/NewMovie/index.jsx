@@ -1,5 +1,5 @@
 
-import { Container, Content, Marks, Tags } from './styles';
+import { Container, Marks, Tags } from './styles';
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -12,26 +12,25 @@ export function NewMovie(){
   return(
     <Container>
       <Header />
-      <Content>
-        <Section title="Novo Filme">
-          <div className="flex">
-            <Input placeholder="Título" />
-            <Input type="number" placeholder="Sua nota (de 0 a 5)" />
-          </div>
-          <TextArea placeholder="Observações"/>
-          <Marks>
-            <p>Marcadores</p>
-            <Tags>
-              <MovieMark value="Aventura" />
-              <MovieMark isNew placeholder="Novo Item" />
-            </Tags>
-          </Marks>
-          <div className="flex">
-            <Button title="Excluir Filme" isBlack/>
-            <Button title="Salvar Alterações"/>
-          </div>
-        </Section>
-      </Content>
+      
+      <Section title="Novo Filme">
+        <div className="flex">
+          <Input placeholder="Título" />
+          <Input type="number" placeholder="Sua nota (de 0 a 5)" />
+        </div>
+        <TextArea placeholder="Observações"/>
+        <Marks>
+          <p>Marcadores</p>
+          <Tags>
+            <MovieMark value="Aventura" />
+            <MovieMark isNew placeholder="Novo Item" />
+          </Tags>
+        </Marks>
+        <div className="flex">
+          <Button title="Excluir Filme" isBlack/>
+          <Button title="Salvar Alterações"/>
+        </div>
+      </Section>
 
     </Container>
   );

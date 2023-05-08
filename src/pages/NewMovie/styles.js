@@ -9,12 +9,7 @@ export const Container = styled.div`
   grid-template-areas: 
     "header"
     "content";
-`;
-
-export const Content = styled.div`
-  grid-area: content;
-  overflow-y: auto;
-
+    
   .flex{
     display: flex;
     gap: 40px;
@@ -22,6 +17,8 @@ export const Content = styled.div`
     margin: 40px 0;
   }
 `;
+
+
 
 export const Marks = styled.div`
   > p {
