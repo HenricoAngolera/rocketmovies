@@ -40,12 +40,6 @@ export const Form = styled.form`
     margin: 48px 0;
   }
 
-  > a {
-    margin-top: 42px;
-    color: ${({ theme }) => theme.COLORS.PINK};
-
-    text-align: center;
-  }
 `;
 
 export const SpaceInput = styled.div`
@@ -53,7 +47,13 @@ export const SpaceInput = styled.div`
   flex-direction: column;
   gap: 8px;
 
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+`;
+
+export const ButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 42px;
 `;
 
 export const Background = styled.div`

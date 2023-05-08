@@ -1,4 +1,3 @@
-// import { BsArrowLeftShort } from 'react-icons/bs';
 import { Container } from './styles';
 
 export function ButtonText({ title, icon: Icon, ...rest }) {
