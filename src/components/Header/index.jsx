@@ -1,8 +1,12 @@
 import { Container, Logo, Search, Profile, ToProfile } from './styles';
 
+import { useAuth } from '../../hooks/auth';
+
 import { Input } from '../../components/Input';
 
 export function Header() {
+  const { signOut } = useAuth()
+
   return(
     <Container>
 
@@ -19,7 +23,7 @@ export function Header() {
           <ToProfile to="/profile">
             <strong>Henrico Angolera</strong>
           </ToProfile>
-          <a href="#">sair</a>
+          <a href="#" onClick={signOut}>sair</a>
         </div>
 
         <ToProfile to="/profile">
