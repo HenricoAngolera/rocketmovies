@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
       localStorage.setItem("@rocketmovies:user", JSON.stringify(user))
       localStorage.setItem("@rocketmovies:token", token)
 
-      api.defaults.headers.authorization = `Bearer ${token}`
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
       setData({ user, token })
       
@@ -35,12 +35,29 @@ function AuthProvider({ children }) {
     setData({})
   }
 
+  async function updateProfile({ user }) {
+    try {
+      await api.put("/users", user)
+      localStorage.setItem("@rocketmovies:user", user)
+
+      setData({ user, token: data.token})
+      alert("Updated Profile!")
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert("It was not possible to update profile.")
+        console.error(error)
+      }
+    }
+  } 
+
   useEffect(() => {
     const token = localStorage.getItem("@rocketmovies:token")
     const user = localStorage.getItem("@rocketmovies:user")
 
     if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
       setData({
         token,
@@ -53,6 +70,7 @@ function AuthProvider({ children }) {
     <AuthContext.Provider value={{ 
       signIn, 
       signOut,
+      updateProfile,
       user: data.user }}>
       {children}
     </AuthContext.Provider>
