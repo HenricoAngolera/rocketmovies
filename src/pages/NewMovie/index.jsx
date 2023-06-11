@@ -7,8 +7,22 @@ import { Section } from '../../components/Section';
 import { Input } from '../../components/Input';
 import { TextArea } from '../../components/TextArea';
 import { MovieMark } from '../../components/MovieMark';
+import { useState } from 'react';
 
 export function NewMovie(){
+  const [marks, setMarks] = useState([])
+  const [newMark, setNewMark] = useState("")
+
+  function handleNewMarks() {
+    setMarks(prevState => [...prevState, newMark])
+    console.log(marks)
+    setNewMark("")
+  }
+
+  function handleRemoveMarks(deletedMark) {
+    setMarks(prevState => prevState.filter(mark => mark !== deletedMark))
+  }
+
   return(
     <Container>
       <Header />
@@ -22,8 +36,22 @@ export function NewMovie(){
         <Marks>
           <p>Marcadores</p>
           <Tags>
-            <MovieMark value="Aventura" />
-            <MovieMark isNew placeholder="Novo Item" />
+            {
+              marks.map((mark, index) => (
+                <MovieMark 
+                  key={String(index)}
+                  value={mark}
+                  onClick={() => {handleRemoveMarks(mark)}}
+                />
+              ))
+            }
+            <MovieMark 
+              isNew 
+              placeholder="Novo Item" 
+              value={newMark}
+              onChange={e => setNewMark(e.target.value)}
+              onClick={handleNewMarks}
+            />
           </Tags>
         </Marks>
         <div className="flex">
