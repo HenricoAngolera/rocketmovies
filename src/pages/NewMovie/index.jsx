@@ -1,5 +1,9 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Container, Marks, Tags } from './styles';
+
+import { api } from '../../services/api';
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -7,20 +11,44 @@ import { Section } from '../../components/Section';
 import { Input } from '../../components/Input';
 import { TextArea } from '../../components/TextArea';
 import { MovieMark } from '../../components/MovieMark';
-import { useState } from 'react';
 
 export function NewMovie(){
+  const [title, setTitle] = useState("")
+  const [rating, setRating] = useState(1)
+  const [description, setDescription] = useState("")
+
   const [marks, setMarks] = useState([])
   const [newMark, setNewMark] = useState("")
 
+  const navigate = useNavigate()
+
   function handleNewMarks() {
     setMarks(prevState => [...prevState, newMark])
-    console.log(marks)
     setNewMark("")
   }
 
   function handleRemoveMarks(deletedMark) {
     setMarks(prevState => prevState.filter(mark => mark !== deletedMark))
+  }
+
+  async function handleNewMovieNote() {
+    console.log(marks)
+    try {
+      await api.post("/movie_notes", {
+        title,
+        description,
+        rating,
+        movie_tags: marks
+      })
+      alert("Note created with success!")
+      navigate("/")
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert(error)
+      }
+    }
   }
 
   return(
@@ -29,10 +57,20 @@ export function NewMovie(){
       
       <Section title="Novo Filme">
         <div className="flex">
-          <Input placeholder="Título" />
-          <Input type="number" placeholder="Sua nota (de 0 a 5)" />
+          <Input 
+            placeholder="Título"
+            onChange={e => setTitle(e.target.value)} 
+          />
+          <Input 
+            type="number" 
+            placeholder="Sua nota (de 1 a 5)"
+            onChange={e => setRating(e.target.value)} 
+          />
         </div>
-        <TextArea placeholder="Observações"/>
+        <TextArea 
+          placeholder="Observações"
+          onChange={e => setDescription(e.target.value)}
+        />
         <Marks>
           <p>Marcadores</p>
           <Tags>
@@ -56,7 +94,10 @@ export function NewMovie(){
         </Marks>
         <div className="flex">
           <Button title="Excluir Filme" isBlack/>
-          <Button title="Salvar Alterações"/>
+          <Button 
+            title="Salvar Alterações"
+            onClick={handleNewMovieNote} 
+          />
         </div>
       </Section>
 
