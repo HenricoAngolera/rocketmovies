@@ -32,7 +32,14 @@ export function NewMovie(){
   }
 
   async function handleNewMovieNote() {
-    console.log(marks)
+    if (!title) {
+      return alert("enter note title")
+    }
+
+    if (newMark) {
+      return alert("You left a mark in the field to add, but didn't click add. Click to add or leave field empty.")
+    }
+
     try {
       await api.post("/movie_notes", {
         title,
