@@ -1,12 +1,29 @@
+import { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { Container, Content, TitlePage, ButtonBox, Notes } from "./styles";
 
+import { api } from '../../services/api';
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button"
 import { MovieNote } from '../../components/MovieNote';
 
 export function Home() {
+  const [search, setSearch] = useState("")
+  const [notes, setNotes] = useState([])
+
+  useEffect(() => {
+    async function fetchNotes() {
+      const response = await api.get(`/movie_notes?title=${search}`)
+      setNotes(response.data)
+      console.log(response.data)
+    }
+
+    fetchNotes()
+
+  }, [search])
+
+
   return(
     <Container>
       <Header />
@@ -18,30 +35,15 @@ export function Home() {
         </TitlePage>
       <Content>
         <Notes>
-          <MovieNote 
-            to="/details/32"
-            data= {{
-              title: "Guardiões da Galaxia",
-              grade: 4,
-              description: "O aventureiro do espaço Peter Quill torna-se presa de caçadores de recompensas depois que rouba a esfera de um vilão traiçoeiro, Ronan. Para escapar do perigo, ele faz uma aliança com um grupo de quatro extraterrestres. Quando Quill descobre que a esfera roubada possui um poder capaz de mudar os rumos do universo, ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia.",
-              tags: [
-                {id: 1, name: 'ação'},
-                {id: 2, name: 'aventura'},
-              ]
-            }}
-            />
-            <MovieNote 
-            data= {{
-              title: "Guardiões da Galaxia",
-              grade: 4,
-              description: "O aventureiro do espaço Peter Quill torna-se presa de caçadores de recompensas depois que rouba a esfera de um vilão traiçoeiro, Ronan. Para escapar do perigo, ele faz uma aliança com um grupo de quatro extraterrestres. Quando Quill descobre que a esfera roubada possui um poder capaz de mudar os rumos do universo, ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia.",
-              tags: [
-                {id: 1, name: 'ação'},
-                {id: 2, name: 'aventura'},
-              ]
-            }}
-            />
-          </Notes>
+          {
+            notes && notes.map(note => (
+              <MovieNote 
+                key={String(note.id)}
+                data={note}
+              />
+            ))
+          }
+        </Notes>
       </Content>
     </Container>
   );

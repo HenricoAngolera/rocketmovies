@@ -14,7 +14,7 @@ import { MovieMark } from '../../components/MovieMark';
 
 export function NewMovie(){
   const [title, setTitle] = useState("")
-  const [rating, setRating] = useState(1)
+  const [rating, setRating] = useState(0)
   const [description, setDescription] = useState("")
 
   const [marks, setMarks] = useState([])
@@ -33,7 +33,7 @@ export function NewMovie(){
 
   async function handleNewMovieNote() {
     if (!title) {
-      return alert("enter note title")
+      return alert("Enter note title.")
     }
 
     if (newMark) {
@@ -70,7 +70,7 @@ export function NewMovie(){
           />
           <Input 
             type="number" 
-            placeholder="Sua nota (de 1 a 5)"
+            placeholder="Sua nota (de 0 a 5)"
             onChange={e => setRating(e.target.value)} 
           />
         </div>
