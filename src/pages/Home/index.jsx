@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { Container, Content, TitlePage, ButtonBox, Notes } from "./styles";
@@ -11,9 +12,15 @@ import { MovieNote } from '../../components/MovieNote';
 export function Home() {
   const [notes, setNotes] = useState([])
 
+  const navigate = useNavigate()
+
   async function fetchNotes(searchTitle = '') {
     const response = await api.get(`/movie_notes?title=${searchTitle}`)
     setNotes(response.data)
+  }
+
+  function handleDetails (id) {
+    navigate(`/details/${id}`)
   }
 
   useEffect(() => {
@@ -36,6 +43,7 @@ export function Home() {
               <MovieNote 
                 key={String(note.id)}
                 data={note}
+                onClick={() => handleDetails(note.id)}
               />
             ))
           }

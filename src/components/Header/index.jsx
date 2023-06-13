@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 import { Container, Logo, Search, Profile, ToProfile } from './styles';
 
