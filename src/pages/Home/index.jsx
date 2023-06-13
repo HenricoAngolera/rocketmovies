@@ -9,24 +9,20 @@ import { Button } from "../../components/Button"
 import { MovieNote } from '../../components/MovieNote';
 
 export function Home() {
-  const [search, setSearch] = useState("")
   const [notes, setNotes] = useState([])
 
+  async function fetchNotes(searchTitle = '') {
+    const response = await api.get(`/movie_notes?title=${searchTitle}`)
+    setNotes(response.data)
+  }
+
   useEffect(() => {
-    async function fetchNotes() {
-      const response = await api.get(`/movie_notes?title=${search}`)
-      setNotes(response.data)
-      console.log(response.data)
-    }
-
     fetchNotes()
-
-  }, [search])
-
+  }, [])
 
   return(
     <Container>
-      <Header />
+      <Header onSearch={fetchNotes} />
         <TitlePage>
           <h1>Meus filmes</h1>
           <ButtonBox to="/new_movie">

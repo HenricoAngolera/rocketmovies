@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 import { Container, Logo, Search, Profile, ToProfile } from './styles';
 
 import { api } from '../../services/api'
@@ -7,12 +10,18 @@ import { useAuth } from '../../hooks/auth';
 
 import { Input } from '../../components/Input';
 
-export function Header() {
+export function Header({ onSearch }) {
   const { signOut, user } = useAuth()
 
   const avatarUrl = user.avatar
     ? `${api.defaults.baseURL}/files/${user.avatar}`
     : avatarPlaceholder
+
+  const navigate = useNavigate()
+
+  function toHome() {
+    navigate("/")
+  }
 
   return(
     <Container>
@@ -22,7 +31,7 @@ export function Header() {
       </Logo>
 
       <Search>
-        <Input placeholder="Pesquise pelo título"/>
+        <Input onClick={toHome} onChange={e => onSearch(e.target.value)} placeholder="Pesquise pelo título"/>
       </Search>
 
       <Profile>
