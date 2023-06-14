@@ -40,7 +40,7 @@ export function Details() {
         data &&
         <Section title={data.title} stars={data.rating}>
           <Author>
-            <img src={avatarUrl} alt="Imagem do usuário" />
+            <img src={avatarUrl} alt={`Imagem de ${user.name}`} />
             <span className='author'>Por {user.name}</span>
             <AiOutlineClockCircle />
             <span className='time'>{data.created_at}</span> 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FiUser, FiMail, FiLock, FiCamera } from "react-icons/fi";
 import { BsArrowLeftShort } from "react-icons/bs";
 
@@ -27,6 +28,8 @@ export function Profile() {
   const [avatar, setAvatar] = useState(avatarUrl)
   const [avatarFile, setAvatarFile] = useState(null)
 
+  const navigate = useNavigate()
+
   async function handleUpdate() {
     const user = {
       name,
@@ -46,11 +49,15 @@ export function Profile() {
     setAvatar(imagePreview)
   }
 
+  function handleBack() {
+    navigate(-1)
+  }
+
   return(
     <Container>
       <header>
         <a href="/">
-          <ButtonText to="/" title="Voltar" icon={BsArrowLeftShort}/>
+          <ButtonText onClick={handleBack} title="Voltar" icon={BsArrowLeftShort}/>
         </a>
       </header>
       <Form>

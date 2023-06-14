@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FiMail, FiLock } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 import { Input } from "../../components/Input";
@@ -13,8 +13,14 @@ export function SignIn(){
 
   const { signIn } = useAuth()
 
+  const navigate = useNavigate()
+
   function handleSignIn(){
     signIn({ email, password })
+  }
+
+  function handleRegister() {
+    navigate("/register")
   }
 
   return (
@@ -39,7 +45,7 @@ export function SignIn(){
             />
         </SpaceInput>
         <Button title="Entrar" onClick={handleSignIn}/>
-        <Link to="/register">Cadastrar</Link>
+        <a onClick={handleRegister}>Cadastrar</a>
       </Form>
       <Background />
     </Container>

@@ -29,7 +29,7 @@ export function SignUp(){
     })
       .then(() => {
         alert('Successfully registered user!')
-        navigate('/')
+        handleBack()
       })
       .catch((error) => {
         if(error.response){
@@ -38,6 +38,10 @@ export function SignUp(){
           return alert("Unable to register.")
         }
       })
+  }
+
+  function handleBack() {
+    navigate(-1)
   }
 
   return (
@@ -69,7 +73,7 @@ export function SignUp(){
         </SpaceInput>
         <Button onClick={handleSignUp}  title="Entrar" />
         <ButtonBox>
-          <ButtonText to="/" title="Voltar para o login" icon={BsArrowLeftShort}/>
+          <ButtonText onClick={handleBack} title="Voltar para o login" icon={BsArrowLeftShort}/>
         </ButtonBox>
       </Form>
       <Background />
