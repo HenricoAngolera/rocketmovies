@@ -1,40 +1,69 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 
 import { Container, Author, Tags } from "./styles";
+
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 
 import { Header } from "../../components/Header";
 import { Section } from "../../components/Section";
 import { Tag } from "../../components/Tag";
 
+import { api } from '../../services/api';
+import { useAuth } from '../../hooks/auth';
+
 export function Details() {
+  const [data, setData] = useState(null)
+
+  const params = useParams()
+
+  const { user } = useAuth()
+
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder
+
+  useEffect(() => {
+    async function fetchNote() {
+      const response = await api.get(`/movie_notes/${params.id}`)
+      setData(response.data)
+    }
+
+    fetchNote()
+  }, [])
+
   return(
     <Container>
       <Header />
-      <Section title="Guardiões da Galaxia" stars="4">
-        <Author>
-          <img src="https://github.com/HenricoAngolera.png" alt="Imagem do usuário" />
-          <span className='author'>Por Henrico Angolera</span>
-          <AiOutlineClockCircle />
-          <span className='time'>23/05/22 às 08:00</span>
-        </Author>
-        <Tags>
-          <Tag id="1" title="ação" />
-          <Tag id="2" title="aventura" />
-        </Tags>
-        <p>
-          O aventureiro do espaço Peter Quill torna-se presa de caçadores de recompensas depois que rouba a esfera de um vilão traiçoeiro, Ronan. Para escapar do perigo, ele faz uma aliança com um grupo de quatro extraterrestres. Quando Quill descobre que a esfera roubada possui um poder capaz de mudar os rumos do universo, ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia. 
-          <br/> 
-          <br/> 
-          O aventureiro do espaço Peter Quill torna-se presa de caçadores de recompensas depois que rouba a esfera de um vilão traiçoeiro, Ronan. Para escapar do perigo, ele faz uma aliança com um grupo de quatro extraterrestres. Quando Quill descobre que a esfera roubada possui um poder capaz de mudar os rumos do universo, ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia. 
-          <br/> 
-          <br/> 
-          O aventureiro do espaço Peter Quill torna-se presa de caçadores de recompensas depois que rouba a esfera de um vilão traiçoeiro, Ronan. Para escapar do perigo, ele faz uma aliança com um grupo de quatro extraterrestres. Quando Quill descobre que a esfera roubada possui um poder capaz de mudar os rumos do universo, ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia. 
-          <br/> 
-          <br/> 
-          O aventureiro do espaço Peter Quill torna-se presa de caçadores de recompensas depois que rouba a esfera de um vilão traiçoeiro, Ronan. Para escapar do perigo, ele faz uma aliança com um grupo de quatro extraterrestres. Quando Quill descobre que a esfera roubada possui um poder capaz de mudar os rumos do universo, ele e seu grupo deverão proteger o objeto para salvar o futuro da galáxia. 
-          
-        </p>
-      </Section>
+      {
+        data &&
+        <Section title={data.title} stars={data.rating}>
+          <Author>
+            <img src={avatarUrl} alt="Imagem do usuário" />
+            <span className='author'>Por {user.name}</span>
+            <AiOutlineClockCircle />
+            <span className='time'>{data.created_at}</span> 
+            {/* Melhorar essa parte da data */}
+          </Author>
+          {
+            data.movie_tags &&
+            <Tags>
+              {
+                data.movie_tags.map(tag => (
+                  <Tag 
+                    key={String(tag.id)}
+                    title={tag.name} 
+                  />
+                ))
+              }
+            </Tags>
+          }
+          <p>
+            {data.description}
+          </p>
+        </Section>
+      }
     </Container>
   );
 }
