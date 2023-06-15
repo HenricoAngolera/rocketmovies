@@ -18,19 +18,24 @@ export function Header({ onSearch }) {
 
   const navigate = useNavigate()
 
-  function toHome() {
+  function handleSignOut() {
+    navigate("/")
+    signOut()
+  }
+
+  function handleToHome() {
     navigate("/")
   }
 
   return(
     <Container>
 
-      <Logo>
+      <Logo onClick={handleToHome}>
         RocketMovies
       </Logo>
 
       <Search>
-        <Input onClick={toHome} onChange={e => onSearch(e.target.value)} placeholder="Pesquise pelo título"/>
+        <Input onClick={handleToHome} onChange={e => onSearch(e.target.value)} placeholder="Pesquise pelo título"/>
       </Search>
 
       <Profile>
@@ -38,7 +43,7 @@ export function Header({ onSearch }) {
           <ToProfile to="/profile">
             <strong>{user.name}</strong>
           </ToProfile>
-          <a href="#" onClick={signOut}>sair</a>
+          <a onClick={handleSignOut}>sair</a>
         </div>
 
         <ToProfile to="/profile">
