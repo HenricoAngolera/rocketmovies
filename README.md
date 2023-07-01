@@ -1,7 +1,7 @@
 
 # RocketMovies Front-end
 
-Este é um projeto front-end desenvolvido durante desafio o Stage 08 no Explorer da Rocketseat. E usamos as seguintes tecnologias:
+Este é um projeto front-end desenvolvido durante desafio o Stage 09 no Explorer da Rocketseat. E usamos as seguintes tecnologias:
 
 ## Stack utilizada
 
@@ -22,10 +22,12 @@ Foi desafiador sair do conhecimento em front-end e ir para o desenvolvimento de 
 - Cadastrar Usuário
 - Alterar Usuário
 
+
 - Cadastrar Notas
 - Mostrar Notas
 - Pesquisar Notas
 - Filtrar notas por nome
+
   
 - Mostrar Tags
  
@@ -33,7 +35,7 @@ Foi desafiador sair do conhecimento em front-end e ir para o desenvolvimento de 
 
 Segue o projeto back-end desta aplicação:
 
-[RocketNotes](https://github.com/HenricoAngolera/api_movies)
+[API Movies](https://github.com/HenricoAngolera/api_movies)
 
 
 ## Feedback
